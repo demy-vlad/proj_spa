@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    margin: 20px auto;
+    width: 60%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+}
+
+form label, textarea {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#error-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8d7da;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    text-align: center;
+}
+
+#close-button {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.review {
+    /* padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 0 10px 0 0; */
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    background-color: #e2e6ef;
+    border-radius: 10px;
+}
+
+.review_text strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.review img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.review_data{
+    padding-left: 10px
+}
+.review_text {
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    border-radius: 0;
+    padding: 5px 10px; 
+    margin-left: 10px; 
+}
+
+.emoji-button {
+    background-color: #e2e6ef;
+    border: none;
+}
+
+.emoji-button:hover {
+    background-color: #e2e6ef;
+}
