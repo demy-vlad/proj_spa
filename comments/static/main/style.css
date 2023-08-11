@@ -10,10 +10,11 @@ h1 {
 
 form {
     margin: 20px auto;
-    width: 60%;
+    width: 40%;
     padding: 20px;
     border: 1px solid #ccc;
     background-color: #f7f7f7;
+    border-radius: 5px;
 }
 
 form label, textarea {
@@ -35,8 +36,13 @@ form label, textarea {
 }
 
 #close-button {
-    margin-top: 10px;
     cursor: pointer;
+    float: right;
+    margin-right: 31%;
+    margin-top: 1%;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-radius: 5px;
 }
 
 .review {
@@ -111,4 +117,48 @@ form label, textarea {
     margin: 2px;
     background-color: #333;
     color: #fff;
+}
+
+.review_solid{
+    border-left: 3px solid #e2e6ef;
+    padding-left: 5px;
+}
+
+.reply{
+    background-color: #e2e6ef;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+.reply_child {
+    margin-left: 30px;
+    padding: 2px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.reply_child img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.reply_child + .reply_child {
+   margin-left: 40px; /* Отступ между парами записей */
+   border-radius: 10px;
+}
+
+.reply_child + .reply_child + .reply_child {
+    margin-left: 50px; /* Отступ для второй пары записей */
+}
+
+.reply_child + .reply_child + .reply_child + .reply_child {
+    margin-left: 60px; /* Отступ для третьей пары записей */
+}
+
+.reply_child + .reply_child + .reply_child + .reply_child + .reply_child {
+    margin-left: 70px; /* Отступ для третьей пары записей */
+}
+
+.reply_child + .reply_child + .reply_child + .reply_child + .reply_child + .reply_child {
+    margin-left: 80px; /* Отступ для третьей пары записей */
 }

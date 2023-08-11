@@ -1,11 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     const openButton = document.getElementById('open-comment-form');
     const openButton2 = document.querySelectorAll('.open-comment-button');
-    const popup = document.getElementById('comment-popup');
-    const closeButton = document.getElementById('close-button');
-    const closeErrorButton = document.getElementById('close-error-button');
-    const form = document.getElementById('comment-form');
-    const errorPopup = document.getElementById('error-popup');
+    var openButtons = document.querySelectorAll('.emoji-button');
+    var popup = document.getElementById('comment-popup');
+    var closeButton = document.getElementById('close-button');
+    var parentCommentIdInput = document.getElementById('parent_comment_id');
+    var form = document.getElementById('comment-form');
+    var errorPopup = document.getElementById('error-popup');
+    var closeErrorButton = document.getElementById('close-error-button');
+
+    openButtons.forEach(function(openButton) {
+        openButton.addEventListener('click', function() {
+            var commentId = openButton.getAttribute('data-comment-id');
+            if (commentId) {
+                parentCommentIdInput.value = commentId;
+            } else {
+                parentCommentIdInput.value = '';
+            }
+            var errorPopup = document.getElementById('error-popup');
+            if (errorPopup) {
+                errorPopup.style.display = 'none';
+            }
+            popup.style.display = 'block';
+        });
+    });
+
 
     openButton.addEventListener('click', function() {
         popup.style.display = 'block';

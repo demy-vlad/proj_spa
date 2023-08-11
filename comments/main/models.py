@@ -6,6 +6,7 @@ class CommentForm(models.Model):
     home_page = models.URLField("Home page", blank=True)
     text = models.TextField("Text", max_length=300)
     created_at = models.DateTimeField("Date", auto_now_add=True)
+    parent_comment = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user_name
