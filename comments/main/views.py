@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import CommentForm
+from django.core.paginator import Paginator
 
 def index(request):
     if request.method == 'POST':
@@ -26,7 +27,12 @@ def handle_post_request(request):
         comment_form.save()
     return redirect('index')
 
-def handle_get_request(request):
-    comment_forms = CommentForm.objects.all()
-    return render(request, 'main/index.html', {'comment_forms': comment_forms})
 
+def handle_get_request(request):
+    comment_list = CommentForm.objects.all()
+    paginator = Paginator(comment_list, 4)  # Количество записей на одной странице
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'main/index.html', {'comment_forms': page_obj})

@@ -61,21 +61,37 @@
         <button id="close-error-button">Close</button>
     </div>
 <!--  -->
-<!--  -->
     {% block content %}
     {% for form in comment_forms %}
     <div class="review">
         <img src="{% static 'images/logo.png' %}" alt="User Image">
         <strong>{{ form.user_name }}</strong>
         {{ form.created_at|date:"d.m.Y в H:i" }}
-        <span>ID: {{ form.id }}</span>
+        <!-- <span>ID: {{ form.id }}</span> -->
         <button id="open-comment-form-button" class="emoji-button" title="Leave a Comment">💭</button>
     </div>
     <div class="review_text">
         {{ form.text }}
     </div>
+
     {% endfor %}
     {% endblock %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if comment_forms.has_previous %}
+                <a href="?page=1">👈 first</a>
+                <a href="?page={{ comment_forms.previous_page_number }}">⬅️</a>
+            {% endif %}
+
+            <span class="current-page">{{ comment_forms.number }}</span>
+
+            {% if comment_forms.has_next %}
+                <a href="?page={{ comment_forms.next_page_number }}">➡️</a>
+                <a href="?page={{ comment_forms.paginator.num_pages }}">last 👉</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 <!--  -->
 <script src="{% static 'main/script.js' %}"></script>

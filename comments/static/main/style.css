@@ -44,8 +44,8 @@ form label, textarea {
     margin-bottom: 20px;
     background-color: #f9f9f9;
     padding: 0 10px 0 0; */
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 2px;
+    margin-bottom: 10px;
     margin-right: 10px;
     background-color: #e2e6ef;
     border-radius: 10px;
@@ -80,4 +80,35 @@ form label, textarea {
 
 .emoji-button:hover {
     background-color: #e2e6ef;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.step-links {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.step-links a {
+    padding: 4px 8px;
+    margin: 2px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    color: #333;
+    text-decoration: none;
+}
+
+.current-page {
+    font-weight: bold;
+    padding: 4px 8px;
+    margin: 2px;
+    background-color: #333;
+    color: #fff;
 }
