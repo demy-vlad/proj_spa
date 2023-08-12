@@ -23,7 +23,13 @@ class CommentHandler:
             error_message = "Неверный адрес электронной почты."
             return render(request, 'main/index.html', {'error_message': error_message})
 
-        comment_form = self.create_comment(user_name, email, home_page, text, self.get_parent_comment(parent_comment_id))
+        comment_form = self.create_comment(
+            user_name, 
+            email, 
+            home_page, 
+            text, 
+            self.get_parent_comment(parent_comment_id)
+            )
         self.save_comment(comment_form)
         
         return redirect('index')
