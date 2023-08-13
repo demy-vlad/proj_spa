@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from .validators import validate_email, validate_username
+from .validators import *
 from .models import CommentForm
 
 class CommentHandler:
@@ -12,17 +12,19 @@ class CommentHandler:
         home_page = request.POST.get('home_page')
         text = request.POST.get('text')
 
-        if not self.validate_input(user_name, email, text):
-            error_message = "All fields are required. (user_name, email, text)"
-            return render(request, 'main/index.html', {'error_message': error_message})
 
         if not validate_username(user_name):
-            error_message = "Invalid username."
+            error_message = "Invalid username"
             return render(request, 'main/index.html', {'error_message': error_message})
 
         if not validate_email(email):
-            error_message = "Invalid email address."
+            error_message = "Invalid email address"
             return render(request, 'main/index.html', {'error_message': error_message})
+        
+        if not is_valid_html(text):
+            error_message = "Invalid HTML text format"
+            return render(request, 'main/index.html', {'error_message': error_message})
+
 
         parent_comment = None
         if parent_comment_id:
@@ -39,17 +41,7 @@ class CommentHandler:
             parent_comment
         )
         self.save_comment(comment_form)
-
         return redirect('index')
-
-    def validate_input(self, user_name, email, text):
-        return user_name and email and text
-
-    def  validate_email(self, email):
-        return validate_email(email)
-    
-    def validate_username(self, email):
-        return validate_username(email)
 
     def create_comment(self, user_name, email, home_page, text, parent_comment):
         return CommentForm(
