@@ -15,7 +15,7 @@
         alert(error_message);
         window.location.href = "{% url 'index' %}";
     </script>
-{% endif %}
+    {% endif %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="/">My Website</a>
@@ -71,6 +71,7 @@
     {% block content %}
     {% for form in comment_forms %}
     <div class="review">
+        <!-- {{ form.id }} -->
         <img src="{% static 'images/logo.png' %}" alt="User Image">
         <strong>{{ form.user_name }}</strong>
         {{ form.created_at|date:"d.m.Y в H:i" }}
@@ -80,22 +81,24 @@
         <div class="review_solid">
             {{ form.text }}
         </div>
+        {% for reply in form.replies.all %}
+        <div class="reply_child">
+            <div class="reply">
+                <!-- {{ reply.id }} -->
+                <img src="{% static 'images/logo.png' %}" alt="User Image">
+                <strong>{{ reply.user_name }}</strong>
+                {{ reply.created_at|date:"d.m.Y в H:i" }}
+                <button class="emoji-button" title="Reply" data-comment-id="{{ form.id }}">➕</button>
+            </div>
+            <div class="review_text">
+                {{ reply.text }}
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% for reply in form.replies.all %}
-    <div class="reply_child">
-    <div class="reply">
-        <img src="{% static 'images/logo.png' %}" alt="User Image">
-        <strong>{{ reply.user_name }}</strong>
-        {{ reply.created_at|date:"d.m.Y в H:i" }}
-        <button class="emoji-button" title="Reply" data-comment-id="{{ form.id }}">➕</button>
-    </div>
-    <div class="review_text">
-        {{ form.text }}
-    </div>
-    </div>
-    {% endfor %}
     {% endfor %}
     {% endblock %}
+
 
     <div class="pagination">
         <span class="step-links">

@@ -1,3 +1,4 @@
+# models.py
 from django.db import models
 
 class CommentForm(models.Model):
@@ -12,6 +13,6 @@ class CommentForm(models.Model):
         return self.user_name
 
     class Meta:
-        verbose_name = "Comments"
+        verbose_name = "Comment"
         verbose_name_plural = "Comments"
-        ordering = ['-user_name', '-email', '-created_at']
+        ordering = ['-created_at']
