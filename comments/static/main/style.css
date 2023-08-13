@@ -22,6 +22,7 @@ form label, textarea {
     margin-bottom: 10px;
 }
 
+
 #error-popup {
     position: fixed;
     top: 50%;

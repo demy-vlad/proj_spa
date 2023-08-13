@@ -27,4 +27,4 @@ def remove_duplicates(comment_list=None, filtered_data=None):
     # for item in comment_list:
     #     if item['parent_comment_id'] is None:
     #         filtered_data.append(item)
-    print(comment_list)
+    return comment_list
