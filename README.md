@@ -7,9 +7,8 @@
 - Comment text validation HTML tags. Checking for correct closing of tags.
 - Protection against duplicate comments when replies.
 - Ability to sort comments by username, email address and date added.
-```bash
-2. Change to the project directory: `cd comments`
-```
+2. Change to the project directory: ```bashcd comments```
+
 
 ## Installation and launch
 ```bash
