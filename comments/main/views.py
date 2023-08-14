@@ -1,4 +1,3 @@
-from django.shortcuts import render, redirect
 from .handlers import comment_handler
 from .sorted_comments import sorted_comments
 

@@ -2,10 +2,14 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from .validators import *
 from .models import CommentForm
+from loguru import logger
 
-class CommentHandler:
-    
+
+class CommentHandler(object):    
     def handle_post_request(self, request):
+        """
+        Handles a POST request to create a new comment
+        """
         parent_comment_id = request.POST.get('parent_comment_id')
         user_name = request.POST.get('user_name')
         email = request.POST.get('email')
@@ -30,8 +34,8 @@ class CommentHandler:
         if parent_comment_id:
             try:
                 parent_comment = CommentForm.objects.get(id=parent_comment_id)
-            except CommentForm.DoesNotExist:
-                pass
+            except CommentForm.DoesNotExist as error:
+                logger.error(error)
 
         comment_form = self.create_comment(
             user_name,
@@ -40,10 +44,14 @@ class CommentHandler:
             text,
             parent_comment
         )
-        self.save_comment(comment_form)
+        comment_form.save()
+
         return redirect('index')
 
     def create_comment(self, user_name, email, home_page, text, parent_comment):
+        """
+        Creates a new CommentForm object
+        """
         return CommentForm(
             user_name=user_name, 
             email=email, 
@@ -52,14 +60,21 @@ class CommentHandler:
             parent_comment=parent_comment,
         )
 
-    def save_comment(self, comment_form):
-        comment_form.save()
-
     def get_all_comments(self):
+        """
+        Gets all comments
+        """
         return CommentForm.objects.filter(parent_comment__isnull=True).order_by('-created_at')
 
     def handle_get_request(self, request):
+        """
+        Handles a GET request to display a list of comments.
+        Pagination for 25 posts.
+        """
         comment_list = self.get_all_comments()
+        if not comment_list:
+            return render(request, 'main/no_comments.html')
+
         paginator = Paginator(comment_list, 25) 
         page_number = request.GET.get('page')
         response = {

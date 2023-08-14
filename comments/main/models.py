@@ -2,7 +2,7 @@
 from django.db import models
 
 class CommentForm(models.Model):
-    user_name = models.CharField("User name", max_length=100)
+    user_name = models.CharField("User name", max_length=256)
     email = models.EmailField("E-mail", max_length=50)
     home_page = models.URLField("Home page", blank=True)
     text = models.TextField("Text", max_length=300)
