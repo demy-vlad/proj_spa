@@ -1,6 +1,4 @@
 # Comments Web Application
-## SPA Application: Comments
-
 ## Peculiarities
 - Users can leave comments with their name, email address and text.
 - Comments can have a nested structure.
