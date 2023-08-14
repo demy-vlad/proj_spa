@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-a_rb(hkc++yl8^+ulxi_a3sxhrt6vcqo_6w6kcz6$!-hs4w%3y
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['demy.sytes.net']
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main',
@@ -96,11 +96,7 @@ USE_TZ = True
 DATE_FORMAT = 'd.m.Y'
 DATETIME_FORMAT = 'd.m.Y H:i'
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

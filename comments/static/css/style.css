@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    margin: 20px auto;
+    width: 40%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+}
+
+form label, textarea {
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+#error-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8d7da;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    text-align: center;
+}
+
+#close-button {
+    cursor: pointer;
+    float: right;
+    margin-right: 31%;
+    margin-top: 1%;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-radius: 5px;
+}
+
+.review {
+    /* padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 0 10px 0 0; */
+    padding: 2px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    background-color: #e2e6ef;
+    border-radius: 10px;
+}
+
+.review_text strong {
+    /* display: block; */
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.review img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.review_data{
+    padding-left: 10px
+}
+.review_text {
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    border-radius: 0;
+    padding: 5px 10px; 
+    margin-left: 10px; 
+}
+
+.emoji-button {
+    background-color: #e2e6ef;
+    border: none;
+}
+
+.emoji-button:hover {
+    background-color: #e2e6ef;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.step-links {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.step-links a {
+    padding: 4px 8px;
+    margin: 2px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    color: #333;
+    text-decoration: none;
+}
+
+.current-page {
+    font-weight: bold;
+    padding: 4px 8px;
+    margin: 2px;
+    background-color: #333;
+    color: #fff;
+}
+
+.review_solid{
+    border-left: 3px solid #e2e6ef;
+    padding-left: 5px;
+}
+
+.reply{
+    background-color: #e2e6ef;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+.reply_child {
+    margin-left: 30px;
+    padding: 2px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.reply_child img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.reply_child + .reply_child {
+   margin-left: 40px; /* Отступ между парами записей */
+   border-radius: 10px;
+}
+
+.reply_child + .reply_child + .reply_child {
+    margin-left: 50px; /* Отступ для второй пары записей */
+}
+
+.reply_child + .reply_child + .reply_child + .reply_child {
+    margin-left: 60px; /* Отступ для третьей пары записей */
+}
+
+.reply_child + .reply_child + .reply_child + .reply_child + .reply_child {
+    margin-left: 70px; /* Отступ для третьей пары записей */
+}
+
+.reply_child + .reply_child + .reply_child + .reply_child + .reply_child + .reply_child {
+    margin-left: 80px; /* Отступ для третьей пары записей */
+}
