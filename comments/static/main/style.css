@@ -4,6 +4,17 @@ body {
     padding: 0;
 }
 
+/* Стили для контейнера капчи */
+.captcha-container {
+    margin-bottom: 15px;
+}
+
+/* Стили для CAPTCHA */
+.g-recaptcha {
+    display: inline-block;
+    transform: scale(0.8); /* Уменьшите или увеличьте масштаб, чтобы подогнать под ваш дизайн */
+}
+
 h1 {
     text-align: center;
 }
