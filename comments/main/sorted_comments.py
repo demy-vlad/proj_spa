@@ -42,6 +42,7 @@ class SortedComments(object):
             'user_name': comment.user_name,
             'email': comment.email,
             'created_at': comment.created_at,
+            'text': comment.text,
         } for comment in comments]
 
         return comment_list
