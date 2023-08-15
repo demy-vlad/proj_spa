@@ -79,7 +79,6 @@
     {% block content %}
     {% for form in comment_forms %}
     <div class="review">
-        {{ form.id }}
         <img src="{% static 'images/logo.png' %}" alt="User Image">
         <strong>{{ form.user_name }}</strong>
         {{ form.created_at|date:"d.m.Y в H:i" }}
@@ -92,17 +91,17 @@
         <!-- form.file -->
         {% if form.file %}
         <br>
-        <label for="{{ form.file.id_for_label }}">File:</label>
-            <a href="/media/{{form.file }}" download>{{ form.file }}</a>
-        <br>
-        {% else %}
+        {% if form.file_type == 'image' %}
+            <img src="{{ form.file.url }}" alt="Uploaded Image">
+        {% elif form.file_type == 'text' %}
+            <label for="{{ form.file.id_for_label }}">File:</label>
+            <a href="{{ form.file.url }}" download>Download File</a>
+        {% endif %}
         {% endif %}
         <!-- form.file -->
-
         {% for reply in form.replies.all %}
         <div class="reply_child">
             <div class="reply">
-                {{ reply.id }}
                 <img src="{% static 'images/logo.png' %}" alt="User Image">
                 <strong>{{ reply.user_name }}</strong>
                 {{ reply.created_at|date:"d.m.Y в H:i" }}
@@ -112,12 +111,14 @@
                 {{ reply.text|safe }}
             </div>
             <!-- form.file -->
-            {% if form.file %}
-            <label for="{{ reply.file.id_for_label }}">File:</label>
-                <a href="{{ reply.file.url }}" download>{{ reply.file }}</a>
-            {% else %}
+            {% if reply.file %}
+            {% if reply.file_type == 'image' %}
+                <img src="{{ reply.file.url }}" alt="Uploaded Image">
+            {% elif reply.file_type == 'text' %}
+                <label for="{{ reply.file.id_for_label }}">File:</label>
+                <a href="{{ reply.file.url }}" download>Download File</a>
             {% endif %}
-            <br>
+            {% endif %}
             <!-- form.file -->
         </div>
         {% endfor %}

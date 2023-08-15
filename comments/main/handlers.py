@@ -55,13 +55,21 @@ class CommentHandler(object):
         """
         Creates a new CommentForm object
         """
+        try:
+            file_extension = file.name.split('.')[-1].lower()
+            if file_extension == 'txt':
+                file_type = 'text'
+        except AttributeError:
+            file_type = 'image' 
+
         comment_form = CommentForm(
             user_name=user_name,
             email=email,
             home_page=home_page,
             text=text,
             parent_comment=parent_comment,
-            file=file
+            file=file,
+            file_type=file_type,
     )
         comment_form.save()
 

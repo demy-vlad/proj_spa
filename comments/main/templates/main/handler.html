@@ -43,12 +43,15 @@
     </thead>
     <tbody>
         {% for comment in comments %}
+        <div class="text_comment">
         <tr>
             <td>{{ comment.user_name }}</td>
             <td>{{ comment.email }}</td>
             <td>{{ comment.created_at|date:"d.m.Y в H:i" }}</td>
-            <td>{{ comment.text|safe }}</td>
+           
+                <td>{{ comment.text|safe }}</td>
         </tr>
+        </div>
         {% endfor %}
     </tbody>
 </table>
