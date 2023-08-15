@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from .forms import CommentFormForm
 from .models import CommentForm
 from loguru import logger
 from .validators import *
