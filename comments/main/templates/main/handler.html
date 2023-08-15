@@ -47,7 +47,7 @@
             <td>{{ comment.user_name }}</td>
             <td>{{ comment.email }}</td>
             <td>{{ comment.created_at|date:"d.m.Y в H:i" }}</td>
-            <td>{{ comment.text }}</td>
+            <td>{{ comment.text|safe }}</td>
         </tr>
         {% endfor %}
     </tbody>

@@ -48,8 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const username = document.getElementById('user_name').value;
         const email = document.getElementById('email').value;
         const text = document.getElementById('text').value;
+        const file = document.getElementById('file').value;
 
-        if (!username || !email || !text) {
+        if (!username || !email || !text || !file) {
             event.preventDefault();
             errorPopup.style.display = 'block';
         }

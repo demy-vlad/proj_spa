@@ -41,7 +41,7 @@
 <div class="container mt-4">
     <div id="comment-popup" style="display: none;">
         <button id="close-button">❌</button>
-        <form id="comment-form" method="post" class="mt-4">
+        <form id="comment-form" method="post" class="mt-4" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name="parent_comment_id" id="parent_comment_id">
             <div class="mb-3">
@@ -63,7 +63,10 @@
                 <label for="text" class="form-label">Text*:</label>
                 <textarea class="form-control" id="text" name="text" rows="4" cols="50"></textarea>
             </div>
-
+            <div class="mb-3">
+                <label for="file" class="form-label">Image or Text File*:</label>
+                <input type="file" class="form-control" id="file" name="file">
+            </div>
             <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
         </form>
     </div>
@@ -76,7 +79,7 @@
     {% block content %}
     {% for form in comment_forms %}
     <div class="review">
-        <!-- {{ form.id }} -->
+        {{ form.id }}
         <img src="{% static 'images/logo.png' %}" alt="User Image">
         <strong>{{ form.user_name }}</strong>
         {{ form.created_at|date:"d.m.Y в H:i" }}
@@ -84,20 +87,38 @@
     </div>
     <div class="review_text">
         <div class="review_solid">
-            {{ form.text }}
+            {{ form.text|safe }}
         </div>
+        <!-- form.file -->
+        {% if form.file %}
+        <br>
+        <label for="{{ form.file.id_for_label }}">File:</label>
+            <a href="/media/{{form.file }}" download>{{ form.file }}</a>
+        <br>
+        {% else %}
+        {% endif %}
+        <!-- form.file -->
+
         {% for reply in form.replies.all %}
         <div class="reply_child">
             <div class="reply">
-                <!-- {{ reply.id }} -->
+                {{ reply.id }}
                 <img src="{% static 'images/logo.png' %}" alt="User Image">
                 <strong>{{ reply.user_name }}</strong>
                 {{ reply.created_at|date:"d.m.Y в H:i" }}
                 <button class="emoji-button" title="Reply" data-comment-id="{{ form.id }}">➕</button>
             </div>
             <div class="review_text">
-                {{ reply.text }}
+                {{ reply.text|safe }}
             </div>
+            <!-- form.file -->
+            {% if form.file %}
+            <label for="{{ reply.file.id_for_label }}">File:</label>
+                <a href="{{ reply.file.url }}" download>{{ reply.file }}</a>
+            {% else %}
+            {% endif %}
+            <br>
+            <!-- form.file -->
         </div>
         {% endfor %}
     </div>
