@@ -11,7 +11,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="{% static 'main/script.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LfvQqwnAAAAAEHA7_hogtcIscXmwKqS3sbbWEG6"></script>
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+    
 </head>
 <body>
     {% if error_message %}
@@ -68,44 +69,10 @@
                 <label for="file" class="form-label">Image or Text File*:</label>
                 <input type="file" class="form-control" id="file" name="file">
             </div>
-            <!-- Контейнер для капчи с стилями -->
-            <div class="captcha-container">
-                <div class="g-recaptcha" data-sitekey="6LfvQqwnAAAAAEHA7_hogtcIscXmwKqS3sbbWEG6" data-action="login"></div>
-            </div>
-
-            <!-- Кнопка Submit с вызовом функции onClick -->
-            <button type="submit" class="btn btn-primary" id="submit-button" onclick="onClick(event)">Submit</button>
-            <!-- <button type="submit" class="btn btn-primary" id="submit-button" onclick="onClick(event)">Submit</button> -->
-            <!-- <button type="submit" class="btn btn-primary" id="submit-button">Submit</button> -->
+            <div id="hcaptcha-container" class="h-captcha" data-sitekey="b1d18fcf-caeb-4760-bb32-4d8e27dd3f79"></div>
+            <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
         </form>
-
-
-        <style>
-            /* Стили для контейнера капчи */
-            .captcha-container {
-                margin-bottom: 15px;
-            }
-        
-            /* Стили для CAPTCHA */
-            .g-recaptcha {
-                display: inline-block;
-                transform: scale(0.8); /* Уменьшите или увеличьте масштаб, чтобы подогнать под ваш дизайн */
-            }
-        </style>
-        
-        <script>
-            function onClick(e) {
-                e.preventDefault();
-                grecaptcha.enterprise.ready(async () => {
-                    const token = await grecaptcha.enterprise.execute('6LcyMqwnAAAAALTr3-M62AGOUN9vRk0ho7meUl6P', {action: 'LOGIN'});
-                    // Вместо '6LcyMqwnAAAAALTr3-M62AGOUN9vRk0ho7meUl6P' подставьте свой reCAPTCHA site key
-                    // Далее вы можете использовать полученный 'token' для проверки на сервере
-                });
-            }
-        </script>
-
-
-
+    
     </div>
     <div id="error-popup" style="display: none;">
         Fill in the required fields
