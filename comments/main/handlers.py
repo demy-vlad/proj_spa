@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from .validators import *
 from .models import CommentForm
 from loguru import logger
+from .validators import *
 
 
-class CommentHandler(object):    
+class CommentHandler(object):
     def handle_post_request(self, request):
         """
         Handles a POST request to create a new comment
@@ -15,7 +15,19 @@ class CommentHandler(object):
         email = request.POST.get('email')
         home_page = request.POST.get('home_page')
         text = request.POST.get('text')
+        file = request.FILES.get('file')
 
+        if file == None:
+            error_message = "Invalid file"
+            return render(request, 'main/index.html', {'error_message': error_message})
+
+        if validate_format(file) == False:
+            error_message = "Invalid file format. Allowed formats: JPG, PNG, GIF."
+            return render(request, 'main/index.html', {'error_message': error_message})   
+
+        if validate_file_size(file) == False:
+            error_message = "File size exceeds the maximum limit of 100 KB."
+            return render(request, 'main/index.html', {'error_message': error_message})    
 
         if not validate_username(user_name):
             error_message = "Invalid username"
@@ -29,36 +41,37 @@ class CommentHandler(object):
             error_message = "Invalid HTML text format"
             return render(request, 'main/index.html', {'error_message': error_message})
 
-
         parent_comment = None
         if parent_comment_id:
             try:
                 parent_comment = CommentForm.objects.get(id=parent_comment_id)
             except CommentForm.DoesNotExist as error:
                 logger.error(error)
-
-        comment_form = self.create_comment(
-            user_name,
-            email,
-            home_page,
-            text,
-            parent_comment
-        )
-        comment_form.save()
-
+        
+        self.create_comment(user_name, email, home_page, text, parent_comment, validate_image_size(file))
         return redirect('index')
 
-    def create_comment(self, user_name, email, home_page, text, parent_comment):
+    def create_comment(self, user_name, email, home_page, text, parent_comment, file):
         """
         Creates a new CommentForm object
         """
-        return CommentForm(
-            user_name=user_name, 
-            email=email, 
-            home_page=home_page, 
-            text=text, 
+        try:
+            file_extension = file.name.split('.')[-1].lower()
+            if file_extension == 'txt':
+                file_type = 'text'
+        except AttributeError:
+            file_type = 'image' 
+
+        comment_form = CommentForm(
+            user_name=user_name,
+            email=email,
+            home_page=home_page,
+            text=text,
             parent_comment=parent_comment,
-        )
+            file=file,
+            file_type=file_type,
+    )
+        comment_form.save()
 
     def get_all_comments(self):
         """

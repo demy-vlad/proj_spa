@@ -38,15 +38,20 @@
             <th><a href="?sort_by=user_name&order={{ order|invert_sort }}">User name</a></th>
             <th><a href="?sort_by=email&order={{ order|invert_sort }}">E-mail</a></th>
             <th><a href="?sort_by=created_at&order={{ order|invert_sort }}">Date</a></th>
+            <th><a>Comment</a></th>
         </tr>
     </thead>
     <tbody>
         {% for comment in comments %}
+        <div class="text_comment">
         <tr>
             <td>{{ comment.user_name }}</td>
             <td>{{ comment.email }}</td>
             <td>{{ comment.created_at|date:"d.m.Y в H:i" }}</td>
+           
+                <td>{{ comment.text|safe }}</td>
         </tr>
+        </div>
         {% endfor %}
     </tbody>
 </table>
