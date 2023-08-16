@@ -1,11 +1,11 @@
-version: '3.8'
+version: '3.3'
 services:
   django_app:
     build:
       context: ./comments
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "80:80"
     restart: always
     volumes:
       - ./comments/db.sqlite3:/app/db.sqlite3

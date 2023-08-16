@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-a_rb(hkc++yl8^+ulxi_a3sxhrt6vcqo_6w6kcz6$!-hs4w%3y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['demy.sytes.net', '127.0.0.1']
+ALLOWED_HOSTS = ['demy.sytes.net', '127.0.0.1', 'localhost']
 
 
 # Application definition
